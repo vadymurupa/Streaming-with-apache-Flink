@@ -25,7 +25,9 @@ import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.DataStreamSink;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+// import org.apache.flink.connector.jdbc.JdbcSink;
 
 public class DataStreamJob {
 
@@ -46,6 +48,18 @@ public class DataStreamJob {
 
 		DataStream<Transaction> transactionStream  = env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka source");
 		transactionStream.print();
+
+		JdbcExecutionOptions execOptions = new JdbcExecutionOptions.Builder()
+				.withBatch
+
+		// create transaction table.
+		transactionStream.addSink(JdbcSink.sink(
+				sql:"",
+				(JdbcSatementBuilder<Transaction>) (preparedStatemente, transaction) -> {
+
+				},
+
+		));
 
 		JobExecutionResult execute = env.execute("Flink API sceleton. ");
 	}
