@@ -54,7 +54,7 @@ public class DataStreamJob {
 
 		// create transaction table.
 		transactionStream.addSink(JdbcSink.sink(
-				sql:"",
+				sql: "",
 				(JdbcSatementBuilder<Transaction>) (preparedStatemente, transaction) -> {
 
 				},
