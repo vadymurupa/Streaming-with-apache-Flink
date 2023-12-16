@@ -37,13 +37,21 @@ import org.apache.flink.elasticsearch7.shaded.org.elasticsearch.common.xcontent.
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSink;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.elasticsearch7.shaded.org.apache.http.HttpHost;
+import org.apache.flink.elasticsearch7.shaded.org.elasticsearch.action.index.IndexRequest;
+import static utils.JsonUtil.convertTransactionToJson;
 
 import java.sql.Date;
 // import org.apache.flink.connector.jdbc.JdbcSink;
 
 public class DataStreamJob {
+	private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String username = "postgres";
+	private static final String password = "postgres";
 
 	public static void main(String[] args) throws Exception {
+
+
 
 		// Sets up the execution environment, which is the main entry point
 		// to building Flink applications.

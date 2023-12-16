@@ -4,7 +4,6 @@ import Dto.Transaction;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.util.Collector;
 
 import java.io.IOException;
 
@@ -20,7 +19,6 @@ public class JSONValueDeserializationSchema implements DeserializationSchema<Tra
     public Transaction deserialize(byte[] bytes) throws IOException {
         return objectMapper.readValue(bytes, Transaction.class);
     }
-
 
     @Override
     public boolean isEndOfStream(Transaction transaction) {
