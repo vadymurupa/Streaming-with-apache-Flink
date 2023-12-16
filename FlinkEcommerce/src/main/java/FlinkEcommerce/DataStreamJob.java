@@ -19,6 +19,9 @@
 package FlinkEcommerce;
 
 import Deserializer.JSONValueDeserializationSchema;
+import Dto.SalesPerCategory;
+import Dto.SalesPerDay;
+import Dto.SalesPerMonth;
 import Dto.Transaction;
 import org.apache.flink.api.common.JobExecutionResult;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -29,9 +32,13 @@ import org.apache.flink.connector.jdbc.JdbcSink;
 import org.apache.flink.connector.jdbc.JdbcStatementBuilder;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.elasticsearch7.shaded.org.elasticsearch.client.Requests;
+import org.apache.flink.elasticsearch7.shaded.org.elasticsearch.common.xcontent.XContentType;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSink;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+import java.sql.Date;
 // import org.apache.flink.connector.jdbc.JdbcSink;
 
 public class DataStreamJob {
